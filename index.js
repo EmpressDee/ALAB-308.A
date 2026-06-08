@@ -59,6 +59,10 @@ initialLoad();
  * - Add a call to this function to the end of your initialLoad function above to create the initial carousel.
  */
 
+export async function favourite(imgId) {
+  // your code here
+}
+
 breedSelect.addEventListener("change",async (e) => {
     const breedId = e.target.value;
 
@@ -72,23 +76,39 @@ breedSelect.addEventListener("change",async (e) => {
 
         Carousel.clear();
 
-     breedImages.forEach(image => {
+     breedImages.forEach((img) => { //wrote wrong parameter which is why pics werent showing
       const item = Carousel.createCarouselItem(img.url, img.id, img.id);
       Carousel.appendCarousel(item);
         //const carouselData = document.createElement("div"); use the function in the carousel.js file
         //carouselData.appendChild(div);
      });
-     Carousel.start
+     Carousel.start();
 
+     infoDump.innerHTML = "";
+     const breedInfo = breedImages[0]?.breeds[0];
 
+if (breedInfo) {
+      infoDump.innerHTML = `
+        <h2>${breedInfo.name}</h2>
+        <p><strong>Origin:</strong> ${breedInfo.origin}</p>
+        <p><strong>Temperament:</strong> ${breedInfo.temperament}</p>
+        <p><strong>Description:</strong> ${breedInfo.description}</p>
+        <p><strong>Life Span:</strong> ${breedInfo.life_span} years</p>
+      `;
 
 
 
 
     }
     
+  }catch (error) {
+      console.log(error);
+    }
+  });
 
- });
+
+
+
 
 
 
@@ -145,9 +165,7 @@ breedSelect.addEventListener("change",async (e) => {
  *   you delete that favourite using the API, giving this function "toggle" functionality.
  * - You can call this function by clicking on the heart at the top right of any image.
  */
-export async function favourite(imgId) {
-  // your code here
-}
+
 
 /**
  * 9. Test your favourite() function by creating a getFavourites() function.
@@ -159,10 +177,10 @@ export async function favourite(imgId) {
  *    repeat yourself in this section.
  */
 
-/**
+/*
  * 10. Test your site, thoroughly!
  * - What happens when you try to load the Malayan breed?
  *  - If this is working, good job! If not, look for the reason why and fix it!
  * - Test other breeds as well. Not every breed has the same data available, so
  *   your code should account for this.
- */
+  */
