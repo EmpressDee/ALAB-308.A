@@ -135,6 +135,54 @@ if (breedInfo) {
  * - Add a console.log statement to indicate when requests begin.
  * - As an added challenge, try to do this on your own without referencing the lesson material.
  */
+//FROM AXIOS DOCUMENTATION
+
+// // Add a request interceptor
+// axios.interceptors.request.use(
+//   function (config) {
+//     // Do something before request is sent
+//     return config;
+//   },
+//   function (error) {
+//     // Do something with request error
+//     return Promise.reject(error);
+//   }
+// );
+
+// // Add a response interceptor
+// axios.interceptors.response.use(
+//   function (response) {
+//     // Any status code that lie within the range of 2xx cause this function to trigger
+//     // Do something with response data
+//     return response;
+//   },
+//   function (error) {
+//     // Any status codes that falls outside the range of 2xx cause this function to trigger
+//     // Do something with response error
+//     return Promise.reject(error);
+//   }
+// );
+axios.interceptors.request.use((config)=>{
+console.log("Time of request: ", Date.now());
+return config
+});
+
+axios.interceptors.response.use((response)=> {
+  console.log("Request duration: "); //not sure what to put here to finish line..**do some research**
+  return response
+})
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * 6. Next, we'll create a progress bar to indicate the request is in progress.
