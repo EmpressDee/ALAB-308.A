@@ -62,14 +62,31 @@ initialLoad();
 breedSelect.addEventListener("change",async (e) => {
     const breedId = e.target.value;
 
-     const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=10&api_key=${API_KEY}&breed_id=${breedId}`);
-        console.log(response);
-        const breeds = await response.json();
-        console.log(breeds);
-     breeds.forEach(breed => {
-        const carouselData = document.createElement("div");
-        carouselData.appendChild(div);
+    try{
+       const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=10&api_key=${API_KEY}&breed_id=${breedId}`);
+        //console.log(response);
+
+       const breedImages = await response.json(); //changing breeds variable to make less confusing
+        //console.log(breedImages);
+
+
+        Carousel.clear();
+
+     breedImages.forEach(image => {
+      const item = Carousel.createCarouselItem(img.url, img.id, img.id);
+      Carousel.appendCarousel(item);
+        //const carouselData = document.createElement("div"); use the function in the carousel.js file
+        //carouselData.appendChild(div);
      });
+     Carousel.start
+
+
+
+
+
+
+    }
+    
 
  });
 
